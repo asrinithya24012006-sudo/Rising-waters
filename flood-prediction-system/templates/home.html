@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rising Waters — Flood Risk Assessment</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="brand" href="/"><span class="mark"></span>Rising Waters</a>
+  <a class="nav-link" href="/Predict">Run Assessment →</a>
+</nav>
+
+<main class="page">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Station Bulletin · Flood Risk Unit</div>
+      <h1>Read the water<br>before it rises.</h1>
+      <p class="lede">
+        Rising Waters turns rainfall, humidity, cloud cover, and temperature
+        readings into an early flood-risk assessment — built for disaster
+        management officers, local authorities, and anyone watching the sky
+        get heavier.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/Predict">Assess Flood Risk</a>
+        <a class="btn btn-ghost" href="#how-it-works">How it works</a>
+      </div>
+    </div>
+
+    <div class="gauge-wrap" aria-hidden="true">
+      <div>
+        <div class="gauge" id="homeGauge">
+          <div class="fill" style="height:38%;"></div>
+        </div>
+        <div class="gauge-label">SAFE</div>
+      </div>
+      <div>
+        <div class="gauge risk" id="homeGauge2">
+          <div class="fill" style="height:71%;"></div>
+        </div>
+        <div class="gauge-label">RISK</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="stat-strip">
+    <div class="stat">
+      <div class="num">04</div>
+      <div class="label">models trained &amp; compared<br>(Decision Tree, Random Forest, KNN, boosted trees)</div>
+    </div>
+    <div class="stat">
+      <div class="num">05</div>
+      <div class="label">weather readings taken<br>per assessment</div>
+    </div>
+    <div class="stat">
+      <div class="num">IQR</div>
+      <div class="label">outlier capping method<br>applied during pre-processing</div>
+    </div>
+    <div class="stat">
+      <div class="num">z</div>
+      <div class="label">standard-scaled inputs<br>for consistent inference</div>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    Rising Waters — a data-driven flood early-warning tool. Predictions are
+    model estimates, not official flood warnings; always follow guidance
+    from your local disaster management authority.
+  </div>
+</main>
+
+</body>
+</html>

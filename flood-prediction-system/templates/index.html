@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Run Assessment — Rising Waters</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="brand" href="/"><span class="mark"></span>Rising Waters</a>
+  <a class="nav-link" href="/">← Back home</a>
+</nav>
+
+<main class="page">
+  <div class="eyebrow">Field Log · New Reading</div>
+  <h1>Enter today's weather readings</h1>
+  <p class="lede">
+    Five inputs are enough for the model to generate a flood-risk
+    reading: rainfall totals, cloud visibility, temperature, and humidity.
+  </p>
+
+  {% if error %}
+  <div class="error-msg">⚠ {{ error }}</div>
+  {% endif %}
+
+  <form class="form-panel" id="predictForm" action="/result" method="POST" novalidate>
+    <div class="field-grid">
+      <div class="field">
+        <label for="annual_rainfall">Annual Rainfall <span class="unit">(mm)</span></label>
+        <input type="number" step="any" min="0" id="annual_rainfall" name="annual_rainfall" placeholder="e.g. 1250" required>
+      </div>
+      <div class="field">
+        <label for="seasonal_rainfall">Seasonal Rainfall, Jun–Sep <span class="unit">(mm)</span></label>
+        <input type="number" step="any" min="0" id="seasonal_rainfall" name="seasonal_rainfall" placeholder="e.g. 780" required>
+      </div>
+      <div class="field">
+        <label for="cloud_visibility">Cloud Visibility <span class="unit">(0–10 scale)</span></label>
+        <input type="number" step="any" min="0" max="10" id="cloud_visibility" name="cloud_visibility" placeholder="e.g. 5.5" required>
+      </div>
+      <div class="field">
+        <label for="temperature">Temperature <span class="unit">(°C)</span></label>
+        <input type="number" step="any" id="temperature" name="temperature" placeholder="e.g. 28.5" required>
+      </div>
+      <div class="field">
+        <label for="humidity">Humidity <span class="unit">(%)</span></label>
+        <input type="number" step="any" min="0" max="100" id="humidity" name="humidity" placeholder="e.g. 74" required>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <div class="eyebrow" style="color:var(--fog);">All fields required</div>
+      <button type="submit" class="btn btn-primary">Run Assessment →</button>
+    </div>
+  </form>
+</main>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

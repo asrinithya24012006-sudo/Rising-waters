@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Flood Risk — Rising Waters</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="brand" href="/"><span class="mark"></span>Rising Waters</a>
+  <a class="nav-link" href="/Predict">New reading</a>
+</nav>
+
+<main class="page">
+  <section class="result-shell">
+    <div class="gauge-wrap">
+      <div>
+        <div class="gauge">
+          <div class="fill" id="resultFill" style="height:0%;" data-target="{{ probability if probability is not none else 20 }}"></div>
+        </div>
+        <div class="gauge-label">RISK LEVEL</div>
+      </div>
+    </div>
+
+    <div class="result-copy">
+      <div class="eyebrow" style="color:var(--safe);">Assessment Result</div>
+      <h1>No flood risk detected.</h1>
+      <p class="lede">
+        Based on today's readings, current conditions look safe{% if probability is not none %} — estimated flood likelihood is <strong>{{ probability }}%</strong>{% endif %}.
+        Keep monitoring rainfall over the coming days.
+      </p>
+
+      {% if inputs %}
+      <ul class="reading-list">
+        <li><span>Annual Rainfall</span><span>{{ inputs.Annual_Rainfall }} mm</span></li>
+        <li><span>Seasonal Rainfall</span><span>{{ inputs.Seasonal_Rainfall }} mm</span></li>
+        <li><span>Cloud Visibility</span><span>{{ inputs.Cloud_Visibility }}</span></li>
+        <li><span>Temperature</span><span>{{ inputs.Temperature }} °C</span></li>
+        <li><span>Humidity</span><span>{{ inputs.Humidity }}%</span></li>
+      </ul>
+      {% endif %}
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/Predict">Run another reading</a>
+        <a class="btn btn-ghost" href="/">Back home</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    This is a model-based estimate, not an official flood warning. Always
+    follow guidance from your local disaster management authority.
+  </div>
+</main>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

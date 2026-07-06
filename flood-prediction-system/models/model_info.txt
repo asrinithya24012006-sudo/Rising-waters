@@ -1,0 +1,3 @@
+Best model: Random Forest
+Accuracy: 82.5%
+Features (in order): ['Annual_Rainfall', 'Cloud_Visibility', 'Seasonal_Rainfall', 'Temperature', 'Humidity']
